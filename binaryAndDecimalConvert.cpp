@@ -4,7 +4,8 @@ using namespace std;
 #define ll long long
 
 ll getInput();
-ll binaryToDecimal(ll input);
+ll convertFromBinaryToDecimal(ll input);
+ll convertFromDecimalToBinary(ll input);
 ll getChooseOptionFromUser();
 void printResultNumber (ll resultNumber);
 void printSaparator();
@@ -21,10 +22,10 @@ int main() {
         input = getInput();
 
         if (chooseOption == 1){
-            result = binaryToDecimal(input);
+            result = convertFromBinaryToDecimal(input);
         }
         else if(chooseOption == 2){
-            // result = decimalToBinary(input, ans1);
+            result = convertFromDecimalToBinary(input);
         }
 
         printResultNumber(result);
@@ -54,7 +55,7 @@ ll getInput(){
     return number;
 }
 
-ll binaryToDecimal(ll input){
+ll convertFromBinaryToDecimal(ll input){
     ll currPower = 0;
     ll resultNumber = 0;
     ll base = 2;
@@ -68,6 +69,21 @@ ll binaryToDecimal(ll input){
         input /= 10;
     }
     return resultNumber;
+}
+
+ll convertFromDecimalToBinary(ll input){
+    string resultNumber;
+    while (input != 0){
+        if (input % 2 == 0){
+            resultNumber += '0';
+        }
+        else {
+            resultNumber += '1';
+        }
+        input /= 2;
+    }
+    reverse(resultNumber.begin(),resultNumber.end());
+    return stoll(resultNumber);
 }
 
 void printResultNumber (ll resultNumber){
