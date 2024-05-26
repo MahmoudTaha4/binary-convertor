@@ -1,55 +1,79 @@
 #include <bits/stdc++.h>
-#include <cmath>
-using namespace std;    
+using namespace std;
 
 #define ll long long
 
-int getNumber(ll& currNumber);
-ll binaryToDecimal(ll& currNumber,ll power,ll& resultNumber,ll& ans1);
+ll getInput();
+ll binaryToDecimal(ll input);
+ll getChooseOptionFromUser();
 void printResultNumber (ll resultNumber);
+void printSaparator();
 
 int main() {
-    ll ans1 = 2;
-    ll currNumber;
-    ll resultNumber = 0;
-    ll power = 0;
-    ll chooseNumber;
+    ll result = 0;
+    ll input;
     while(true){
-        cout << "hello please choose option" << endl << "1-from binary to decimal" << endl << "2-from decimal to binary" << endl << "0-exit" << endl << ">>> ";
-        cin >> chooseNumber;
-        if (chooseNumber == 1){
-            getNumber(currNumber);
-            binaryToDecimal(currNumber,power,resultNumber,ans1);
-            printResultNumber (resultNumber);
+        ll chooseOption = getChooseOptionFromUser();
+        if(chooseOption == 0){
+            break;
         }
-        else if (chooseNumber == 0){
-            return 0;
+
+        input = getInput();
+
+        if (chooseOption == 1){
+            result = binaryToDecimal(input);
         }
+        else if(chooseOption == 2){
+            // result = decimalToBinary(input, ans1);
+        }
+
+        printResultNumber(result);
+        printSaparator();
     }
 }
 
-int getNumber(ll& currNumber){
-    cout << "please enter the number :";
-    cin >> currNumber;
-    return currNumber;
+
+ll getChooseOptionFromUser(){
+    ll chooseOption;
+    cout << "hello please choose option\n" << 
+            "1- from binary to decimal\n" << 
+            "2- from decimal to binary\n" << 
+            "0- exit\n" << 
+            ">>> ";
+
+    cin >> chooseOption;
+
+    return chooseOption;
 }
 
-ll binaryToDecimal(ll& currNumber,ll power,ll& resultNumber,ll& ans1){
-    resultNumber = 0;
-    while(currNumber != 0){
-        ll ans = currNumber % 10;
-        if (ans == 0){
-            power++;
+ll getInput(){
+    ll number;
+    cout << "please enter the number: ";
+    cin >> number;
+
+    return number;
+}
+
+ll binaryToDecimal(ll input){
+    ll currPower = 0;
+    ll resultNumber = 0;
+    ll base = 2;
+
+    while(input != 0){
+        ll currLastDigit = input % 10;
+        if (currLastDigit == 1){
+            resultNumber += pow(base, currPower);
         }
-        else{
-            resultNumber += pow(ans1,power);
-            power++;
-        }
-        currNumber /= 10;
+        currPower++;
+        input /= 10;
     }
     return resultNumber;
 }
 
 void printResultNumber (ll resultNumber){
     cout << "the result is: " << resultNumber << endl;
+}
+
+void printSaparator(){
+    cout << "=====================================\n\n";
 }
