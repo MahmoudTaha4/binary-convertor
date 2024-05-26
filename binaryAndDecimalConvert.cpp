@@ -74,15 +74,10 @@ ll convertFromBinaryToDecimal(ll input){
 ll convertFromDecimalToBinary(ll input){
     string resultNumber;
     while (input != 0){
-        if (input % 2 == 0){
-            resultNumber += '0';
-        }
-        else {
-            resultNumber += '1';
-        }
+        resultNumber += input % 2 + '0';
         input /= 2;
     }
-    reverse(resultNumber.begin(),resultNumber.end());
+    reverse(resultNumber.begin(), resultNumber.end());
     return stoll(resultNumber);
 }
 
