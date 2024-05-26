@@ -91,5 +91,5 @@ void printResultNumber (ll resultNumber){
 }
 
 void printSaparator(){
-    cout << "=====================================\n\n";
+    cout << "======================================\n\n";
 }
